@@ -5,6 +5,8 @@ module.exports = {
     es2021: true,
   },
   extends: [
+    'react-app',
+    'react-app/jest',
     'eslint:recommended',
     'prettier',
     'plugin:prettier/recommended',
@@ -28,4 +30,12 @@ module.exports = {
       version: 'detect',
     },
   },
+  overrides: [
+    {
+      files: ['**/*.stories.*'],
+      rules: {
+        'import/no-anonymous-default-export': 'off',
+      },
+    },
+  ],
 }
