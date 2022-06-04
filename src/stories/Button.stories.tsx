@@ -1,41 +1,39 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from 'react'
+import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Button } from './Button';
+import ButtonBaseComponent from '../components/ButtonBase'
+import Button from '../components/Button'
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Example/Button',
+  title: 'FormInputs/Button',
   component: Button,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {
-    backgroundColor: { control: 'color' },
+  subcomponents: { ButtonBase: ButtonBaseComponent },
+} as ComponentMeta<typeof Button>
+
+const Template: ComponentStory<typeof Button> = (args) => {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', width: 300 }}>
+      <Button {...args}>I am a button</Button>
+    </div>
+  )
+}
+
+export const Simple = Template.bind({})
+
+export const ButtonBase: ComponentStory<typeof ButtonBaseComponent> = (args) => {
+  return (
+    <div
+      style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'Arial', fontSize: 16 }}
+    >
+      <ButtonBaseComponent>I am a button</ButtonBaseComponent>-
+      <ButtonBaseComponent href="/home">I am a link</ButtonBaseComponent>- And this star is a button
+      ➡<ButtonBaseComponent>⭐️</ButtonBaseComponent>
+    </div>
+  )
+}
+ButtonBase.parameters = {
+  docs: {
+    storyDescription:
+      '`Button` is build on top of `ButtonBase` which simply removes any browser styling. It can also be used to turn anything into an accessible button, without applying additional styling. A good example is if you wanted to make an icon clickable but do not want the styling and features of `IconButton`',
   },
-} as ComponentMeta<typeof Button>;
-
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
-
-export const Primary = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-  primary: true,
-  label: 'Button',
-};
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: 'Button',
-};
-
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large',
-  label: 'Button',
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
-  label: 'Button',
-};
+}

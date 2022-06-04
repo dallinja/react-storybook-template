@@ -8,10 +8,10 @@ module.exports = {
     'react-app',
     'react-app/jest',
     'eslint:recommended',
-    'prettier',
-    'plugin:prettier/recommended',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -24,6 +24,7 @@ module.exports = {
   plugins: ['react', '@typescript-eslint'],
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
   settings: {
     react: {
@@ -36,6 +37,13 @@ module.exports = {
       rules: {
         'import/no-anonymous-default-export': 'off',
       },
+    },
+    {
+      files: ['*.mdx'],
+      parserOptions: {
+        parser: '@babel/eslint-parser',
+      },
+      extends: ['plugin:mdx/recommended'],
     },
   ],
 }
